@@ -2,7 +2,9 @@ import database from "infra/database.js";
 
 async function status(request, response) {
   const updateAt = new Date().toISOString();
+
   const serverVersion = await database.query("SHOW server_version;");
+
   const maxConnections = await database.query("SHOW max_connections;");
 
   /* Alterei esta consulta para usar query parametrizada, evitando SQL Injection
